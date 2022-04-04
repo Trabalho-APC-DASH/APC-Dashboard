@@ -1,5 +1,5 @@
 # APC-Dashboard
-<h3> (Projeto em desenvolvimento) </h3>
+<h3> (1º Etapa Concluída) </h3>
 
 <h4>DashBoard e gráficos desenvolvido em equipe durante o curso de Algoritmos e Programação de Computadores (APC) na UnB 2.2021</h4>
 <br>
