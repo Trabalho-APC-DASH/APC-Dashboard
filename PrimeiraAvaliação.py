@@ -100,7 +100,7 @@ fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Total Industrializado'],
                     mode='lines', name='Total (Industrializado)'))
 
 # ATUALIZAÇÃO DE TÍTULO E NOMEAÇÃO DA PARTE VERTICAL DO GRÁFICO E HORIZONTAL:
-fig3.update_layout(title='Preço Médio do Café',
+fig3.update_layout(title='Preço Médio do Café Brasileiro',
                    xaxis_title='Ano',
                    yaxis_title='Preço (R$)')
 
@@ -289,13 +289,13 @@ def UpdateDeDash1(value):
         fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Total Industrializado'],
                             mode='lines', name='Total (Industrializado)'))
 
-        fig3.update_layout(title='Preço Médio do Café',
+        fig3.update_layout(title='Preço Médio do Café Brasileiro',
                         xaxis_title='Ano',
                         yaxis_title='Preço Médio (R$)')
 
     else:
 
-        fig3 = px.line(df3, x='Mês/Ano', y=str(value), title=f'Preço Médio ({value})', labels={ str(value) : f'Preço Médio (R$) - {value}'})
+        fig3 = px.line(df3, x='Mês/Ano', y=str(value), title=f'Preço Médio ({value}) Brasileiro', labels={ str(value) : f'Preço Médio (R$) - {value}'})
 
     return fig3
 

@@ -41,7 +41,7 @@ fig.add_trace(go.Scatter(x=df['Mês/Ano'], y=df['Solúvel'],
 fig.add_trace(go.Scatter(x=df['Mês/Ano'], y=df['Total Industrializado'],
                     mode='lines', name='Total (Industrializado)'))
 
-fig.update_layout(title='Preço Médio do Café',
+fig.update_layout(title='Preço Médio do Café Brasileiro',
                    xaxis_title='Ano',
                    yaxis_title='Preço (R$)')
 
@@ -81,13 +81,13 @@ def UpdateDeDash1(value):
         fig.add_trace(go.Scatter(x=df['Mês/Ano'], y=df['Total Industrializado'],
                             mode='lines', name='Total (Industrializado)'))
 
-        fig.update_layout(title='Preço Médio do Café',
+        fig.update_layout(title='Preço Médio do Café Brasileiro',
                         xaxis_title='Ano',
                         yaxis_title='Preço Médio (R$)')
 
     else:
 
-        fig = px.line(df, x='Mês/Ano', y=str(value), title=f'Preço Médio ({value})', labels={ str(value) : f'Preço Médio (R$) - {value}'})
+        fig = px.line(df, x='Mês/Ano', y=str(value), title=f'Preço Médio ({value}) Brasileiro', labels={ str(value) : f'Preço Médio (R$) - {value}'})
 
     return fig
 
