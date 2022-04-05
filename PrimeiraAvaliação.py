@@ -34,7 +34,7 @@ del opcoes[6]
 opcoes2 = ['ARÁBICA (Por sacas de 60kg)', 'CONILLON (Por sacas de 60kg)', 'SOLÚVEL (Por sacas de 60kg)', 'TORRADO (Por sacas de 60kg)', 'TOTAL']
 
 # DECLARAÇÃO DE COMO O GRÁFICO IRÁ SER ORGANIZADO:
-fig1 = px.bar(df1, x="CONTINENTE", y="TOTAL", color="PAÍS DESTINO", height=700, title='Exportação Brasileira por País')
+fig1 = px.bar(df1, x="CONTINENTE", y="TOTAL", color="PAÍS DESTINO", height=700, title='Compra de Café Brasileiro por País')
 
 
 
@@ -245,22 +245,22 @@ def update_de_dash(tipo, continente):
     if tipo == 'TOTAL':
         if continente == 'Todos os Continentes':
 
-            fig1 = px.bar(df1, x="CONTINENTE", y="TOTAL", color="PAÍS DESTINO", height=700, title='Exportação Brasileira por País')
+            fig1 = px.bar(df1, x="CONTINENTE", y="TOTAL", color="PAÍS DESTINO", height=700, title='Compra de Café Brasileiro por País por Continente')
 
         else:
 
             filtro = df1.loc[df1['CONTINENTE']==continente, :]
-            fig1 = px.bar(filtro, x="CONTINENTE", y="TOTAL", color="PAÍS DESTINO", height=700, title=f'Exportação Brasileira ({continente})')
+            fig1 = px.bar(filtro, x="CONTINENTE", y="TOTAL", color="PAÍS DESTINO", height=700, title=f'Compra de Café Brasileiro ({continente})')
 
     else:
         if continente == 'Todos os Continentes':
 
-            fig1 = px.bar(df1, x="CONTINENTE", y=str(tipo), color="PAÍS DESTINO", height=700, title=f'Exportação do café {tipo} Brasileiro ({continente})')
+            fig1 = px.bar(df1, x="CONTINENTE", y=str(tipo), color="PAÍS DESTINO", height=700, title=f'Compra de Café {tipo} Brasileiro por Continente')
 
         else:
 
             filtro = df1.loc[df1['CONTINENTE']==continente, :]
-            fig1 = px.bar(filtro, x="CONTINENTE", y=str(tipo), color="PAÍS DESTINO", height=700, title=f'Exportação {tipo} Brasileiro ({continente})')
+            fig1 = px.bar(filtro, x="CONTINENTE", y=str(tipo), color="PAÍS DESTINO", height=700, title=f'Compra de Café {tipo} Brasileiro ({continente})')
 
     return fig1
 

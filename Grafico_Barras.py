@@ -53,7 +53,7 @@ dropdown logo adiante.
 '''
 
 # DECLARAÇÃO DE COMO O GRÁFICO IRÁ SER ORGANIZADO:
-fig = px.bar(df, x="CONTINENTE", y="TOTAL", color="PAÍS DESTINO", height=700, title='Exportação Brasileira por País')
+fig = px.bar(df, x="CONTINENTE", y="TOTAL", color="PAÍS DESTINO", height=700, title='Compra de Café Brasileiro por País')
 
 
 # DECLARAÇÃO DO LAYOUT DA PÁGINA WEB COM HTML, CSS E O DCC:
@@ -126,22 +126,22 @@ def update_de_dash(tipo, continente):
     if tipo == 'TOTAL':
         if continente == 'Todos os Continentes':
 
-            fig = px.bar(df, x="CONTINENTE", y="TOTAL", color="PAÍS DESTINO", height=700, title='Exportação Brasileira por País')
+            fig = px.bar(df, x="CONTINENTE", y="TOTAL", color="PAÍS DESTINO", height=700, title='Compra de Café Brasileiro por País por Continente')
 
         else:
 
             filtro = df.loc[df['CONTINENTE']==continente, :]
-            fig = px.bar(filtro, x="CONTINENTE", y="TOTAL", color="PAÍS DESTINO", height=700, title=f'Exportação Brasileira ({continente})')
+            fig = px.bar(filtro, x="CONTINENTE", y="TOTAL", color="PAÍS DESTINO", height=700, title=f'Compra de Café Brasileiro ({continente})')
 
     else:
         if continente == 'Todos os Continentes':
 
-            fig = px.bar(df, x="CONTINENTE", y=str(tipo), color="PAÍS DESTINO", height=700, title=f'Exportação do café {tipo} Brasileiro ({continente})')
+            fig = px.bar(df, x="CONTINENTE", y=str(tipo), color="PAÍS DESTINO", height=700, title=f'Compra de Café {tipo} Brasileiro por Continente')
 
         else:
 
             filtro = df.loc[df['CONTINENTE']==continente, :]
-            fig = px.bar(filtro, x="CONTINENTE", y=str(tipo), color="PAÍS DESTINO", height=700, title=f'Exportação {tipo} Brasileiro ({continente})')
+            fig = px.bar(filtro, x="CONTINENTE", y=str(tipo), color="PAÍS DESTINO", height=700, title=f'Compra de Café {tipo} Brasileiro ({continente})')
 
     return fig
 
