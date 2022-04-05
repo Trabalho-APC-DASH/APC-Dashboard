@@ -16,7 +16,7 @@ df1 = read_excel("https://github.com/Trabalho-APC-DASH/Painel-APC/blob/main/Banc
 df2 = read_excel('https://github.com/Trabalho-APC-DASH/Painel-APC/blob/main/Banco%20de%20Dados/UnidadesReceita.xlsx?raw=true')
 
 # DECLARAÇÃO DO 3º DATAFRAME:
-df3 = read_excel('Painel-APC\Banco de Dados\Preco_Medio.xlsx')
+df3 = read_excel('https://github.com/Trabalho-APC-DASH/Painel-APC/blob/main/Banco%20de%20Dados/Preco_Medio.xlsx?raw=true')
 
 # DECLARAÇÃO DO 4º DATAFRAME:
 df4 = read_excel('https://github.com/Trabalho-APC-DASH/Painel-APC/blob/main/Banco%20de%20Dados/Paises_exportadores_cafe.xlsx?raw=true')
