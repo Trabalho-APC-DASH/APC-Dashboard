@@ -6,6 +6,7 @@
 import plotly.express as px
 from pandas import read_excel
 from dash import Dash, dcc, html, Input, Output
+import plotly.graph_objects as go
 
 
 # DECLARAÇÃO DO 1º DATAFRAME:
@@ -15,7 +16,7 @@ df1 = read_excel("https://github.com/Trabalho-APC-DASH/Painel-APC/blob/main/Banc
 df2 = read_excel('https://github.com/Trabalho-APC-DASH/Painel-APC/blob/main/Banco%20de%20Dados/UnidadesReceita.xlsx?raw=true')
 
 # DECLARAÇÃO DO 3º DATAFRAME:
-df3 = read_excel('https://github.com/Trabalho-APC-DASH/Painel-APC/blob/main/Banco%20de%20Dados/Consumo_cafe.xlsx?raw=true')
+df3 = read_excel('Painel-APC\Banco de Dados\Preco_Medio.xlsx')
 
 # DECLARAÇÃO DO 4º DATAFRAME:
 df4 = read_excel('https://github.com/Trabalho-APC-DASH/Painel-APC/blob/main/Banco%20de%20Dados/Paises_exportadores_cafe.xlsx?raw=true')
@@ -67,26 +68,41 @@ fig2 = px.bar(dfOf1, x=0, y=1, color=2, barmode="group", title='Exportação/Imp
 # ============================================================================
 # DATAFRAME 3)
 
-# TRANSFORMAÇÃO DO DF3 PARA UMA LISTA MODIFICÁVEL:
-lista2 = df3.values
 
-# DECLARAÇÃO DO DATAFRAME OFICIAL DO DF3:
-dfOf2 = []
+# MEMORIZAÇÃO DAS COLUNAS DA PRIMEIRA LINHA PRESENTE NO DATAFRAME 3:
+opcoes3 = []
+for n in df3:
+    opcoes3 += [n]
 
-for a in lista2:
-    dfOf2 += [[a[0], a[1], '2017/18']]
-    dfOf2 += [[a[0], a[2], '2018/19']]
-    dfOf2 += [[a[0], a[3], '2019/20']]
-    dfOf2 += [[a[0], a[4], '2020/21']]
+# INSERÇÃO DE UMA NOVA OPÇÃO PARA O DROPDOWN:
+opcoes3.insert(0, 'Todos os Tipos de Café')
 
+# EXCLUSÃO DE DADOS DESNECESSÁRIOS PARA EXIBIÇÃO NO GRÁFICO:
+del opcoes3[1]
+del opcoes3[7]
 
-# DECLARAÇÃO DE COMO O GRÁFICO IRÁ SER ORGANIZADO:
-fig3 = px.line(dfOf2, x=2, y=1, color=0, markers=True, symbol=0 , title='Consumo (Em milhares de sacas de 60kg)' ,labels={
-    '0': 'Países',
-    '1': 'Consumo',
-    '2': 'Ano'
-})
+# DECLARAÇÃO PRIMÁRIA DE COMO O GRÁFICO IRÁ SER ORGANIZADO:
+fig3 = go.Figure()
+fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Conillon'],
+                    mode='lines',
+                    name='Conillon'))
+fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Arábica'],
+                    mode='lines',
+                    name='Arábica'))
+fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Total Café Verde'],
+                    mode='lines', name='Total (Café Verde)'))
 
+fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Torrado'],
+                    mode='lines', name='Torrado'))
+fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Solúvel'],
+                    mode='lines', name='Solúvel'))
+fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Total Industrializado'],
+                    mode='lines', name='Total (Industrializado)'))
+
+# ATUALIZAÇÃO DE TÍTULO E NOMEAÇÃO DA PARTE VERTICAL DO GRÁFICO E HORIZONTAL:
+fig3.update_layout(title='Preço Médio do Café',
+                   xaxis_title='Ano',
+                   yaxis_title='Preço (R$)')
 
 
 
@@ -198,10 +214,13 @@ app.layout = html.Div(children=[
 
     html.Div(className='TerceiroGrafico', children=[
 
+        dcc.Dropdown(opcoes3, value='Todos os Tipos de Café', id='filtro3'),
+
         dcc.Graph(
-        id='Grafico_dados3',
-        figure=fig3
-    )
+            id='Grafico_dados3',
+            figure=fig3
+        ),
+
     ]),
 
     html.Div(className='QuartoGrafico', children=[
@@ -212,6 +231,10 @@ app.layout = html.Div(children=[
     )
     ])
     ]) 
+
+# INICIAÇÃO AOS CALLBACKS:
+
+# CALLBACK PARA O GRÁFICO 1 (EM BARRAS):
 @app.callback(
     Output('Grafico_dados', 'figure'),
     Input('Filtro_Tipo', 'value'),
@@ -240,6 +263,41 @@ def update_de_dash(tipo, continente):
             fig1 = px.bar(filtro, x="CONTINENTE", y=str(tipo), color="PAÍS DESTINO", height=700, title=f'Exportação {tipo} Brasileiro ({continente})')
 
     return fig1
+
+# CALLBACK PARA O GRÁFICO 2:
+@app.callback(
+    Output('Grafico_dados3', 'figure'),
+    Input('filtro3', 'value')
+)
+def UpdateDeDash1(value):
+    if value == 'Todos os Tipos de Café':
+
+        fig3 = go.Figure()
+        fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Conillon'],
+                            mode='lines',
+                            name='Conillon'))
+        fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Arábica'],
+                            mode='lines',
+                            name='Arábica'))
+        fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Total Café Verde'],
+                            mode='lines', name='Total (Café Verde)'))
+
+        fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Torrado'],
+                            mode='lines', name='Torrado'))
+        fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Solúvel'],
+                            mode='lines', name='Solúvel'))
+        fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Total Industrializado'],
+                            mode='lines', name='Total (Industrializado)'))
+
+        fig3.update_layout(title='Preço Médio do Café',
+                        xaxis_title='Ano',
+                        yaxis_title='Preço Médio (R$)')
+
+    else:
+
+        fig3 = px.line(df3, x='Mês/Ano', y=str(value), title=f'Preço Médio ({value})', labels={ str(value) : f'Preço Médio (R$) - {value}'})
+
+    return fig3
 
 if __name__ == '__main__':
     app.run_server(debug=True)
