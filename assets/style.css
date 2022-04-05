@@ -1,0 +1,52 @@
+body{
+    padding: 15px;
+    padding-top: 0px;
+    background-color: rgb(192, 192, 192);
+}
+
+.Titulo{
+    text-align: center;
+    font-size: 50px;
+    color: chocolate;
+    font-family: Century Gothic;
+    padding: 10px;
+}
+
+.Letreiro1{
+    background-color: rgba(51, 22, 1, 0.986);
+    border-radius: 50px;
+}
+
+.Dropdown1{
+    font-family: Century Gothic;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.Dropdown2{
+    font-family: Century Gothic;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.Dropdown3{
+    font-family: Century Gothic;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.PrimeiroGrafico{
+    margin: 100px;
+}
+
+.SegundoGrafico{
+    margin: 100px;
+}
+
+.TerceiroGrafico{
+    margin: 100px;
+}
+
+.QuartoGrafico{
+    margin: 100px;
+}

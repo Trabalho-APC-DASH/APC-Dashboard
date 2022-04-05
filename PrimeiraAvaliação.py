@@ -3,6 +3,7 @@
 
 
 # EXPORTAÇÕES:
+from turtle import bgcolor
 import plotly.express as px
 from pandas import read_excel
 from dash import Dash, dcc, html, Input, Output
@@ -174,7 +175,7 @@ fig4.update_geos(
     landcolor="#06832F",
     oceancolor="#1E8AC9",
     showocean=True,
-    lakecolor="#5FC4D0"
+    lakecolor="#5FC4D0",
 )
 # =======================================================================================
 
@@ -184,19 +185,25 @@ fig4.update_geos(
 # INÍCIO PARA EXECUÇÃO DO LAYOUT E INSERÇÃO DOS GRÁFICOS:
 app = Dash(__name__)
 
-app.layout = html.Div(children=[
+app.layout = html.Div(className='Tudo' , children=[
+
+    html.Div(className='Letreiro1', children=[
+
+        html.H1(children=['Café ☕'], className='Titulo'),
+
+    ]),
 
     html.Div(className='PrimeiroGrafico' , children=[
       
-        dcc.Dropdown(opcoes, value='Todos os Continentes', id='Filtro_Continentes', style={
-        "border-radius": "30px",
-        "background-color": "darkgrey"
-        }),
+        dcc.Dropdown(opcoes, value='Todos os Continentes', id='Filtro_Continentes', className='Dropdown1', style={
+                     'background-color': 'chocolate',
+                     'border-radius': '50px',
+                     'border-color': 'transparent'}),
 
-        dcc.Dropdown(opcoes2, value='TOTAL', id='Filtro_Tipo', style={
-        "border-radius": "30px",
-        "background-color": "darkgrey"
-        }),
+        dcc.Dropdown(opcoes2, value='TOTAL', id='Filtro_Tipo', className='Dropdown2', style={
+                     'background-color': 'chocolate',
+                     'border-radius': '50px',
+                     'border-color': 'transparent'}),
 
         dcc.Graph(
         id='Grafico_dados',
@@ -214,7 +221,10 @@ app.layout = html.Div(children=[
 
     html.Div(className='TerceiroGrafico', children=[
 
-        dcc.Dropdown(opcoes3, value='Todos os Tipos de Café', id='filtro3'),
+        dcc.Dropdown(opcoes3, value='Todos os Tipos de Café', id='filtro3', className='Dropdown3', style={
+                     'background-color': 'chocolate',
+                     'border-radius': '50px',
+                     'border-color': 'transparent'}),
 
         dcc.Graph(
             id='Grafico_dados3',
