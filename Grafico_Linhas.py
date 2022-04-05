@@ -12,7 +12,7 @@ import plotly.graph_objects as go
 app = Dash(__name__) 
 
 
-df = read_excel('Painel-APC\Banco de Dados\Preco_Medio.xlsx')
+df = read_excel('https://github.com/Trabalho-APC-DASH/Painel-APC/blob/main/Banco%20de%20Dados/Preco_Medio.xlsx?raw=true')
 lista1 = df.values
 
 opcoes = []
