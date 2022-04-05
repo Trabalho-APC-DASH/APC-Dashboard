@@ -3,7 +3,6 @@
 
 
 # EXPORTAÇÕES:
-from turtle import bgcolor
 import plotly.express as px
 from pandas import read_excel
 from dash import Dash, dcc, html, Input, Output
