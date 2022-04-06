@@ -28,9 +28,21 @@ df4 = read_excel('https://github.com/Trabalho-APC-DASH/Painel-APC/blob/main/Banc
 # DATAFRAME 1)
 
 # ORGANIZAÇÃO DAS OPÇÕES PARA O DROPDOWN:
-opcoes = list(df1["CONTINENTE"].unique())
+def funcao_unique(lista):
+
+    resultado = []
+
+    unicidade = set(lista)
+
+    for elemento in unicidade:
+        resultado.append(elemento)
+
+    return resultado
+
+opcoes = funcao_unique(df1['CONTINENTE'])
+
 opcoes.insert(0, 'Todos os Continentes')
-del opcoes[6]
+del opcoes[1]
 opcoes2 = ['ARÁBICA (Por sacas de 60kg)', 'CONILLON (Por sacas de 60kg)', 'SOLÚVEL (Por sacas de 60kg)', 'TORRADO (Por sacas de 60kg)', 'TOTAL']
 
 # DECLARAÇÃO DE COMO O GRÁFICO IRÁ SER ORGANIZADO:
@@ -74,37 +86,24 @@ opcoes3 = []
 for n in df3:
     opcoes3 += [n]
 
-# INSERÇÃO DE UMA NOVA OPÇÃO PARA O DROPDOWN:
-opcoes3.insert(0, 'Todos os Tipos de Café')
-
 # EXCLUSÃO DE DADOS DESNECESSÁRIOS PARA EXIBIÇÃO NO GRÁFICO:
-del opcoes3[1]
-del opcoes3[7]
+del opcoes3[0]
+del opcoes3[6]
 
 # DECLARAÇÃO PRIMÁRIA DE COMO O GRÁFICO IRÁ SER ORGANIZADO:
 fig3 = go.Figure()
-fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Conillon'],
-                    mode='lines',
-                    name='Conillon'))
-fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Arábica'],
-                    mode='lines',
-                    name='Arábica'))
-fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Total Café Verde'],
-                    mode='lines', name='Total (Café Verde)'))
 
-fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Torrado'],
-                    mode='lines', name='Torrado'))
-fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Solúvel'],
-                    mode='lines', name='Solúvel'))
-fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Total Industrializado'],
-                    mode='lines', name='Total (Industrializado)'))
+for cafe in opcoes3:
+    fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3[cafe],
+                        mode='lines', name=cafe))
 
 # ATUALIZAÇÃO DE TÍTULO E NOMEAÇÃO DA PARTE VERTICAL DO GRÁFICO E HORIZONTAL:
 fig3.update_layout(title='Preço Médio do Café Brasileiro',
                    xaxis_title='Ano',
                    yaxis_title='Preço (R$)')
 
-
+# INSERÇÃO DE UMA NOVA OPÇÃO PARA O DROPDOWN:
+opcoes3.insert(0, 'Todos os Tipos de Café')
 
 # ==============================================================================
 # DATAFRAME 4)
@@ -241,25 +240,52 @@ app.layout = html.Div(className='Tudo' , children=[
     ])
     ]) 
 
+# =====================================================================================================================
 # INICIAÇÃO AOS CALLBACKS:
 
 # CALLBACK PARA O GRÁFICO 1 (EM BARRAS):
+
+# DEFINIÇÃO DE FUNÇÃO PARA FILTRAGEM QUE IRÁ SUBSTITUIR A FUNÇÃO 'LOC' DO PANDAS:
+def filtragem(dataframe, pesquisa, coluna):
+    Filtro = []
+    
+    if coluna == None:
+        
+        for linha in dataframe:
+            if linha[0] == pesquisa:
+                Filtro += [[linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], linha[6]]]
+
+
+    else:
+        referencia = 2
+        for alternativa in opcoes2:
+            if str(coluna) == str(alternativa):
+                for linha in dataframe:
+                    if linha[0] == pesquisa:
+                        Filtro += [[linha[0], linha[1], linha[referencia]]]
+            referencia += 1
+        
+
+    return Filtro
+
+
 @app.callback(
     Output('Grafico_dados', 'figure'),
     Input('Filtro_Tipo', 'value'),
     Input('Filtro_Continentes', 'value')
 )
 def update_de_dash(tipo, continente):
-    
+    dfFl1 = df1.values
+
     if tipo == 'TOTAL':
         if continente == 'Todos os Continentes':
 
             fig1 = px.bar(df1, x="CONTINENTE", y="TOTAL", color="PAÍS DESTINO", height=700, title='Compra de Café Brasileiro por País por Continente')
 
-        else:
+        else:  
 
-            filtro = df1.loc[df1['CONTINENTE']==continente, :]
-            fig1 = px.bar(filtro, x="CONTINENTE", y="TOTAL", color="PAÍS DESTINO", height=700, title=f'Compra de Café Brasileiro ({continente})')
+            filtro = filtragem(dfFl1, str(continente), None)
+            fig1 = px.bar(filtro, x=0, y=6, color=1, height=700, title=f'Compra de Café Brasileiro ({continente})', labels={'0': 'CONTINENTE', '6': 'TOTAL', '1': 'PAÍS DESTINO'})
 
     else:
         if continente == 'Todos os Continentes':
@@ -268,11 +294,12 @@ def update_de_dash(tipo, continente):
 
         else:
 
-            filtro = df1.loc[df1['CONTINENTE']==continente, :]
-            fig1 = px.bar(filtro, x="CONTINENTE", y=str(tipo), color="PAÍS DESTINO", height=700, title=f'Compra de Café {tipo} Brasileiro ({continente})')
+            filtro = filtragem(dfFl1, str(continente), str(tipo))
+            fig1 = px.bar(filtro, x=0, y=2, color=1, height=700, title=f'Compra de Café {tipo} Brasileiro ({continente})', labels={'0': 'CONTINENTE', '1': 'PAÍS DESTINO', '2': tipo})
 
     return fig1
 
+# ======================================================================================================================
 # CALLBACK PARA O GRÁFICO 2:
 @app.callback(
     Output('Grafico_dados3', 'figure'),

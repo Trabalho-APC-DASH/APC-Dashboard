@@ -12,84 +12,78 @@ import plotly.graph_objects as go
 app = Dash(__name__) 
 
 
-df = read_excel('https://github.com/Trabalho-APC-DASH/Painel-APC/blob/main/Banco%20de%20Dados/Preco_Medio.xlsx?raw=true')
-lista1 = df.values
+df3 = read_excel('https://github.com/Trabalho-APC-DASH/Painel-APC/blob/main/Banco%20de%20Dados/Preco_Medio.xlsx?raw=true')
 
-opcoes = []
-for n in df:
-    opcoes += [n]
+# MEMORIZAÇÃO DAS COLUNAS DA PRIMEIRA LINHA PRESENTE NO DATAFRAME 3:
+opcoes3 = []
+for n in df3:
+    opcoes3 += [n]
 
-opcoes.insert(0, 'Todos os Tipos de Café')
-del opcoes[1]
-del opcoes[7]
+# EXCLUSÃO DE DADOS DESNECESSÁRIOS PARA EXIBIÇÃO NO GRÁFICO:
+del opcoes3[0]
+del opcoes3[6]
 
+# DECLARAÇÃO PRIMÁRIA DE COMO O GRÁFICO IRÁ SER ORGANIZADO:
+fig3 = go.Figure()
 
-fig = go.Figure()
-fig.add_trace(go.Scatter(x=df['Mês/Ano'], y=df['Conillon'],
-                    mode='lines',
-                    name='Conillon'))
-fig.add_trace(go.Scatter(x=df['Mês/Ano'], y=df['Arábica'],
-                    mode='lines',
-                    name='Arábica'))
-fig.add_trace(go.Scatter(x=df['Mês/Ano'], y=df['Total Café Verde'],
-                    mode='lines', name='Total (Café Verde)'))
+for cafe in opcoes3:
+    fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3[cafe],
+                        mode='lines', name=cafe))
 
-fig.add_trace(go.Scatter(x=df['Mês/Ano'], y=df['Torrado'],
-                    mode='lines', name='Torrado'))
-fig.add_trace(go.Scatter(x=df['Mês/Ano'], y=df['Solúvel'],
-                    mode='lines', name='Solúvel'))
-fig.add_trace(go.Scatter(x=df['Mês/Ano'], y=df['Total Industrializado'],
-                    mode='lines', name='Total (Industrializado)'))
-
-fig.update_layout(title='Preço Médio do Café Brasileiro',
+# ATUALIZAÇÃO DE TÍTULO E NOMEAÇÃO DA PARTE VERTICAL DO GRÁFICO E HORIZONTAL:
+fig3.update_layout(title='Preço Médio do Café Brasileiro',
                    xaxis_title='Ano',
                    yaxis_title='Preço (R$)')
+
+# INSERÇÃO DE UMA NOVA OPÇÃO PARA O DROPDOWN:
+opcoes3.insert(0, 'Todos os Tipos de Café')
 
 
 app.layout = html.Div(children=[
 
-    dcc.Dropdown(opcoes, value='Todos os Tipos de Café', id='filtro3'),
+    dcc.Dropdown(opcoes3, value='Todos os Tipos de Café', id='filtro3'),
 
     dcc.Graph(
-        id='Grafico_dados',
-        figure=fig
+        id='Grafico_dados3',
+        figure=fig3
     ),
 
 ])
 
+# CALLBACK PARA O GRÁFICO 2:
 @app.callback(
-    Output('Grafico_dados', 'figure'),
+    Output('Grafico_dados3', 'figure'),
     Input('filtro3', 'value')
 )
 def UpdateDeDash1(value):
     if value == 'Todos os Tipos de Café':
 
-        fig = go.Figure()
-        fig.add_trace(go.Scatter(x=df['Mês/Ano'], y=df['Conillon'],
+        fig3 = go.Figure()
+        fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Conillon'],
                             mode='lines',
                             name='Conillon'))
-        fig.add_trace(go.Scatter(x=df['Mês/Ano'], y=df['Arábica'],
+        fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Arábica'],
                             mode='lines',
                             name='Arábica'))
-        fig.add_trace(go.Scatter(x=df['Mês/Ano'], y=df['Total Café Verde'],
+        fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Total Café Verde'],
                             mode='lines', name='Total (Café Verde)'))
 
-        fig.add_trace(go.Scatter(x=df['Mês/Ano'], y=df['Torrado'],
+        fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Torrado'],
                             mode='lines', name='Torrado'))
-        fig.add_trace(go.Scatter(x=df['Mês/Ano'], y=df['Solúvel'],
+        fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Solúvel'],
                             mode='lines', name='Solúvel'))
-        fig.add_trace(go.Scatter(x=df['Mês/Ano'], y=df['Total Industrializado'],
+        fig3.add_trace(go.Scatter(x=df3['Mês/Ano'], y=df3['Total Industrializado'],
                             mode='lines', name='Total (Industrializado)'))
 
-        fig.update_layout(title='Preço Médio do Café Brasileiro',
+        fig3.update_layout(title='Preço Médio do Café Brasileiro',
                         xaxis_title='Ano',
                         yaxis_title='Preço Médio (R$)')
 
     else:
 
-        fig = px.line(df, x='Mês/Ano', y=str(value), title=f'Preço Médio ({value}) Brasileiro', labels={ str(value) : f'Preço Médio (R$) - {value}'})
+        fig3 = px.line(df3, x='Mês/Ano', y=str(value), title=f'Preço Médio ({value}) Brasileiro', labels={ str(value) : f'Preço Médio (R$) - {value}'})
 
-    return fig
+    return fig3
 
 
 if __name__ == '__main__':

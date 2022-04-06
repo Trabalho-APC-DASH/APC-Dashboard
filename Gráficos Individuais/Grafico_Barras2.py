@@ -9,34 +9,39 @@ from dash import Dash, dcc, html
 
 app = Dash(__name__)
 
-df = read_excel('https://github.com/Trabalho-APC-DASH/Painel-APC/blob/main/Banco%20de%20Dados/UnidadesReceita.xlsx?raw=true')
-lista = df.values
+df2 = read_excel('https://github.com/Trabalho-APC-DASH/Painel-APC/blob/main/Banco%20de%20Dados/UnidadesReceita.xlsx?raw=true')
 
-opcoes1 = list(df['Unidades Receita Federal'])
-opcoes1.insert(0, 'TODOS')
+# TRANSFORMAÇÃO DO DF2 PARA UMA LISTA MODIFICÁVEL:
+lista = df2.values
 
-df2 = []
+# DECLARAÇÃO DO DATAFRAME OFICIAL DO DF2:
+dfOf1 = []
+
+# REORGANIZAÇÃO DO DF2:
 for n in lista:
-    df2 += [[n[0], n[1], 'Importação Jan/Fev2022']]
-    df2 += [[n[0], n[3], 'Exportação Jan/Fev2022']]
-    df2 += [[n[0], n[5], 'Importação Jan/Fev2021']]
-    df2 += [[n[0], n[7], 'Exportação Jan/Fev2021']]
+    dfOf1 += [[n[0], n[1], 'Importação Jan/Fev2022']]
+    dfOf1 += [[n[0], n[3], 'Exportação Jan/Fev2022']]
+    dfOf1 += [[n[0], n[5], 'Importação Jan/Fev2021']]
+    dfOf1 += [[n[0], n[7], 'Exportação Jan/Fev2021']]
 
 
-fig = px.bar(df2, x=0, y=1, color=2, barmode="group", labels={
+# DECLARAÇÃO DE COMO O GRÁFICO IRÁ SER ORGANIZADO:
+fig2 = px.bar(dfOf1, x=0, y=1, color=2, barmode="group", title='Exportação/Importação por Receita Federal', labels={
              '0': 'Unidade Da Receita Federal',
              '1': 'Sacas (60kg)',
              '2': 'Tipo'
             })
 
+# INSERÇÃO DE LAYOUT NA PÁGINA:
 app.layout = html.Div(children=[
 
     dcc.Graph(
         id='Grafico_dados',
-        figure=fig
+        figure=fig2
     )
 
 ])
 
+# SINTAXE FINAL
 if __name__ == '__main__':
     app.run_server(debug=True)
