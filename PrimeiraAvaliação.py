@@ -156,6 +156,13 @@ for ln in Lista3:
             dfOf3 += [[ln[0], ln[1], ln[2], 'África']]
 
 
+referencia = 0
+for linha in dfOf3:
+    if linha[0] == 0:
+        del dfOf3[referencia]
+
+    referencia += 1
+
 # DECLARAÇÃO DE COMO O GRÁFICO IRÁ SER ORGANIZADO:
 fig4 = px.scatter_geo(dfOf3, # Definição do DataFrame a ser utilizado
                          title= 'Produção de Café Anual (Toneladas)',
@@ -175,6 +182,7 @@ fig4.update_geos(
     showocean=True,
     lakecolor="#5FC4D0",
 )
+
 # =======================================================================================
 
 

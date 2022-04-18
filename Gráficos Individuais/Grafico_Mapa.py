@@ -9,7 +9,7 @@ from dash import Dash, dcc, html
 app = Dash(__name__)
 
 # DEFINIÇÃO DO BANCO DE DADOS:
-df4 = read_excel('https://github.com/Trabalho-APC-DASH/Painel-APC/blob/main/Banco%20de%20Dados/Paises_exportadores_cafe.xlsx?raw=true')
+df4 = read_excel('Painel-APC\Banco de Dados\BancoDados.xlsx')
 
 # TRANSFORMAÇÃO DO DF4 PARA UMA LISTA MODIFICÁVEL:
 Lista3 = df4.values
@@ -58,6 +58,12 @@ for ln in Lista3:
         if ln[1] == cont:
             dfOf3 += [[ln[0], ln[1], ln[2], 'África']]
 
+referencia = 0
+for linha in dfOf3:
+    if linha[0] == 0:
+        del dfOf3[referencia]
+
+    referencia += 1
 
 # DECLARAÇÃO DE COMO O GRÁFICO IRÁ SER ORGANIZADO:
 fig4 = px.scatter_geo(dfOf3, # Definição do DataFrame a ser utilizado
