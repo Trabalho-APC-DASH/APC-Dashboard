@@ -51,5 +51,3 @@
   <img height = "65" src = "https://images.plot.ly/logo/new-branding/plotly-logomark.png">
   
 </div>
-
-<!-- Teste de Commit>
