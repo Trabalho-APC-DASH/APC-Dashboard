@@ -190,7 +190,7 @@ app = Dash(__name__)
 app.layout = html.Div(className='Tudo' , children=[
 
     html.Div(className='Letreiro1', children=[
-
+        
         html.H1(children=['Café☕'], className='Titulo'),
 
     ]),
@@ -203,16 +203,14 @@ app.layout = html.Div(className='Tudo' , children=[
             dcc.Dropdown(opcoes, value='Todos os Continentes', id='Filtro_Continentes', className='Dropdown1', style={
                         'background-color': 'chocolate',
                         'border-radius': '14px',
-                        'border-color': 'transparent',
-                        
+                        'border-color': 'transparent',                       
                         }),
             ]),
            html.Div(children=[
             dcc.Dropdown(opcoes2, value='TOTAL', id='Filtro_Tipo', className='Dropdown2', style={
                         'background-color': 'chocolate',
                         'border-radius': '14px',
-                        'border-color': 'transparent',
-                        
+                        'border-color': 'transparent',                       
                         }),
             ]),
         dcc.Graph(
