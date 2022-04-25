@@ -3,7 +3,6 @@
 
 
 # EXPORTAÇÕES:
-from turtle import color
 import plotly.express as px
 from pandas import read_excel
 from dash import Dash, dcc, html, Input, Output
@@ -189,11 +188,18 @@ app = Dash(__name__)
 
 app.layout = html.Div(className='Tudo' , children=[
 
+    
+    html.Nav(className='BarraNavegacao', children=[
+
+    ]),
+    
+
     html.Div(className='Letreiro1', children=[
         
         html.H1(children=['Café☕'], className='Titulo'),
-
+    
     ]),
+
 
     html.Div(className='Todos', children= [
 
