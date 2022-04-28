@@ -23,7 +23,7 @@
 
 # Instalações Necessárias:
 
-<h4>Será necessário instalar ou possuir 4 Bibliotecas:</h4>
+<h4>Será necessário instalar ou possuir 5 Bibliotecas:</h4>
 
 * Dash;
 * Plotly;
