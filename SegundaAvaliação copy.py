@@ -565,7 +565,7 @@ app.layout = html.Div(className='Tudo', id='Tudo', children=[
         html.Div([
 
             html.Img(src='./assets/logo.png', id='ImagemId', width=200, className='ImagemClass'),
-            html.P('Desenvolvido por Alunos da Universidade de Brasília - FGA', id='textofinal', className='textofinalClass')
+            html.P('Desenvolvido por Alunos da Universidade de Brasília - FGA', id='textofinal', className='textofinalClass', style={'font-weight': 'bold'})
 
         ], className='finalClass', style={'margin-top': '4vh'})
 
