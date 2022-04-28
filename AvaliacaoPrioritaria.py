@@ -7,6 +7,8 @@ import plotly.express as px
 from pandas import read_excel
 from dash import Dash, dcc, html, Input, Output, State
 import plotly.graph_objects as go
+
+# IMPORTAÇÃO DE BOOTSTRAP PARA FAZER SITE:
 import dash_bootstrap_components as dbc
 
 
@@ -78,6 +80,7 @@ fig2.update_layout(
         font_color='white',
     )
 
+# REPETIÇÃO PARA CRIAR UMA LISTA PARA SER UTILIZADA NO DROPDOWN DO GRÁFICO 2:
 receita_filtragem = []
 for n in lista:
     receita_filtragem += [n[0]]
@@ -261,8 +264,17 @@ barralateral = html.Div(
 # -----------------------------------------------------------------------------------------
 # DECLARAÇÃO EM PARTES DO SITE:
 
+
     # B) MODAIS:
 
+# -=-=-=-=-=-=-=-=-=-=-
+# O QUE SÃO OS MODAIS?
+
+# OS MODAIS SÃO AS JANELINHAS QUE ABREM QUNADO CLICAMOS NOS BOTÕES.
+# -=-=-=-=-=-=-=-=-=-=-
+
+
+# DECLARAÇÃO DO MODAL DA 1º OPÇÃO DA CAIXA DE SELEÇÃO DA BARRA LATERAL:
 modalPrim1 = html.Div(
     [
         dbc.Modal(
@@ -272,19 +284,20 @@ modalPrim1 = html.Div(
                 # CORPO DO MODAL:
                 dbc.ModalBody([
 
+                    # O CORPO SERÁ UMA 'P'ARÁGRAFO E DOIS DROPDOWN'S DE FILTRO DO 1º GRÁFICO:
                     html.P('Selecione o continente a ser FIltrado:'),
 
+                        # 1º DROPDOWN:
                         dcc.Dropdown(opcoes, value='Todos os Continentes', id='Filtro_Continentes', className='Dropdown1', style={
                             'background-color': 'chocolate',
                             'border-radius': '14px',
                             'border-color': 'transparent',                       
                         }),
     
-    
-        
-
+                    # MAIS UM 'P'ARÁGRAFO:
                     html.P('Selecione o Tipo de Café a ser FIltrado:', style={'margin-top': '2vh'}),
 
+                        # 2º DROPDOWN:
                         dcc.Dropdown(opcoes2, value='TOTAL', id='Filtro_Tipo', className='Dropdown2', style={
                             'background-color': 'chocolate',
                             'border-radius': '14px',
@@ -296,6 +309,8 @@ modalPrim1 = html.Div(
 
                 # RODAPÉ DO MODAL:
                 dbc.ModalFooter(
+
+                    # TEREMOS UM BOTÃO EM SEU RODAPÉ:
                     dbc.Button(
                         "Fechar", id="closePrim1", className="ms-auto", n_clicks=0, color='dark', outline=True
                     )
@@ -308,15 +323,21 @@ modalPrim1 = html.Div(
     ]
 )
 
+# DECLARAÇÃO DO MODAL DA 2º OPÇÃO DA CAIXA DE SELEÇÃO DA BARRA LATERAL:
 modalPrim2 = html.Div(
     [
         dbc.Modal(
             [
+                # TITULO DO MODAL:
                 dbc.ModalHeader(dbc.ModalTitle("Filtro: Segundo Gráfico (Barras em Grupos)")),
+
+                # CORPO DO MODAL:
                 dbc.ModalBody([
 
+                    # O CORPO SERÁ UMA 'P'ARÁGRAFO E O DROPDOWN DE FILTRO DO 2º GRÁFICO:
                     html.P('Selecione a Localização da Receita Federal a Ser filtrada:'),
 
+                    # DROPDOWN:
                     dcc.Dropdown(receita_filtragem, value='Todos', id='filtro4', className='Dropdown4', style={
                         'background-color': 'chocolate',
                         'border-radius': '14px',
@@ -324,7 +345,11 @@ modalPrim2 = html.Div(
                         'margin-bottom': '1vh'}),
 
                 ]),
+
+                # RODAPÉ DO MODAL:
                 dbc.ModalFooter(
+
+                    # TEREMOS UM BOTÃO EM SEU RODAPÉ:
                     dbc.Button(
                         "Fechar", id="closePrim2", className="ms-auto", n_clicks=0, color='dark', outline=True
                     )
@@ -337,15 +362,21 @@ modalPrim2 = html.Div(
     ]
 )
 
+# DECLARAÇÃO DO MODAL DA 3º OPÇÃO DA CAIXA DE SELEÇÃO DA BARRA LATERAL:
 modalPrim3 = html.Div(
     [
         dbc.Modal(
             [
+                # TITULO DO MODAL:
                 dbc.ModalHeader(dbc.ModalTitle("Filtro: Terceiro Gráfico (Linhas)")),
+
+                # CORPO DO MODAL:
                 dbc.ModalBody([
 
+                    # O CORPO SERÁ UMA 'P'ARÁGRAFO E O DROPDOWN DE FILTRO DO 3º GRÁFICO:
                     html.P('Selecione o Tipo de Café a ser filtrado:'),
 
+                    # DROPDOWN:
                     dcc.Dropdown(opcoes3, value='Todos os Tipos de Café', id='filtro3', className='Dropdown3', style={
                         'background-color': 'chocolate',
                         'border-radius': '14px',
@@ -353,7 +384,11 @@ modalPrim3 = html.Div(
                         'margin-bottom': '1vh'}),
 
                 ]),
+
+                # RODAPÉ DO MODAL:
                 dbc.ModalFooter(
+
+                    # TEREMOS UM BOTÃO EM SEU RODAPÉ:
                     dbc.Button(
                         "Fechar", id="closePrim3", className="ms-auto", n_clicks=0, color='dark', outline=True
                     )
@@ -371,8 +406,13 @@ modal1 = html.Div(
     [
         dbc.Modal(
             [
+                # TÍTULO DO MODAL:
                 dbc.ModalHeader(dbc.ModalTitle("Compra de Café Brasileiro")),
+
+                # CORPO DO MODAL:
                 dbc.ModalBody("Gráfico em barras, representa a quantidade exportada de café brasileiro entre os principais países compradores do produto"),
+                
+                # RODAPÉ DO MODAL:
                 dbc.ModalFooter(
                     dbc.Button(
                         "Fechar", id="close1", className="ms-auto", n_clicks=0, color='dark', outline=True
@@ -398,6 +438,8 @@ modal2 = html.Div(
 
                 # RODAPÉ DO MODAL:
                 dbc.ModalFooter(
+
+                    # TEREMOS UM BOTÃO EM SEU RODAPÉ:
                     dbc.Button(
                         "Fechar", id="close2", className="ms-auto", n_clicks=0, color='dark', outline=True
                     )
@@ -422,6 +464,8 @@ modal3 = html.Div(
 
                 # RODAPÉ DO MODAL:
                 dbc.ModalFooter(
+
+                    # TEREMOS UM BOTÃO EM SEU RODAPÉ:
                     dbc.Button(
                         "Fechar", id="close3", className="ms-auto", n_clicks=0, color='dark', outline=True
                     )
@@ -446,6 +490,8 @@ modal4 = html.Div(
 
                 # RODAPÉ DO MODAL:
                 dbc.ModalFooter(
+
+                    # TEREMOS UM BOTÃO EM SEU RODAPÉ:
                     dbc.Button(
                         "Fechar", id="close4", className="ms-auto", n_clicks=0, color='dark', outline=True
                     )
@@ -458,6 +504,7 @@ modal4 = html.Div(
     ]
 )
 
+# DECLARAÇÃO DO MODAL DO BOTÃO DE DESENVOLVEDORES:
 modalDev = html.Div(
     [
         dbc.Modal(
@@ -466,7 +513,8 @@ modalDev = html.Div(
 
                 # CORPO DO MODAL:
                 dbc.ModalBody([
-
+                    
+                    # LISTA DOS INTEGRANTES:
                     html.Ul([
 
                         html.Li('Daniel Rodrigues da Rocha - 211061583'),
@@ -483,6 +531,8 @@ modalDev = html.Div(
 
                 # RODAPÉ DO MODAL:
                 dbc.ModalFooter(
+
+                    # TEREMOS UM BOTÃO EM SEU RODAPÉ:
                     dbc.Button(
                         "Fechar", id="closeDev", className="ms-auto", n_clicks=0, color='dark', outline=True
                     )
@@ -503,7 +553,7 @@ modalDev = html.Div(
 
 
 
-# DECLARAÇÃO  EM HTML DO 1º GRÁFICO:
+# DECLARAÇÃO DO DCC DO 1º GRÁFICO:
 grafico1 = [
 
     dcc.Graph(
@@ -512,7 +562,7 @@ grafico1 = [
     )
 ]
 
-# DECLARAÇÃO  EM HTML DO 2º GRÁFICO:
+# DECLARAÇÃO DO DCC DO 2º GRÁFICO:
 grafico2 = [
 
         dcc.Graph(
@@ -522,7 +572,7 @@ grafico2 = [
 
 ]
 
-# DECLARAÇÃO  EM HTML DO 3º GRÁFICO:
+# DECLARAÇÃO DO DCC DO 3º GRÁFICO:
 grafico3 = [
 
     dcc.Graph(
@@ -532,7 +582,7 @@ grafico3 = [
 
 ]
 
-# DECLARAÇÃO EM HTML DO 4º GRÁFICO:
+# DECLARAÇÃO DO DCC DO 4º GRÁFICO:
 grafico4 = [
 
     dcc.Graph(
@@ -599,6 +649,7 @@ app.layout = html.Div(className='Tudo', id='Tudo', children=[
             style={'margin-right': '2vw'}
         ),
 
+        # DIV PARA A IMAGEM DA LOGO UNB NO FINAL DA PÁGINA:
         html.Div([
 
             html.Img(src='./assets/logo.png', id='ImagemId', width=200, className='ImagemClass'),
@@ -607,43 +658,75 @@ app.layout = html.Div(className='Tudo', id='Tudo', children=[
         ], className='finalClass', style={'margin-top': '4vh'})
 
     ])
+
+    # INCLUSÃO DAS VARIÁVEIS CRIADAS ACIMA:
     ]), barralateral, modal1, modal2, modal3, modal4, modalPrim1, modalPrim2, modalPrim3, modalDev])
 
 
 # =====================================================================================================================
-# INICIAÇÃO AOS CALLBACKS:
-
-    # CALLBACK PARA O GRÁFICO 1 (EM BARRAS):
+# DEFINIÇÃO DE FUNÇÃO:
 
 # DEFINIÇÃO DE FUNÇÃO PARA FILTRAGEM QUE IRÁ SUBSTITUIR A FUNÇÃO 'LOC' DO PANDAS:
 def filtragem(dataframe, pesquisa, coluna):
+# ARGUMENTOS: DATAFRAME A SER FILTRADO, REFERÊNCIA DO QUE SERÁ PESQUISADO NOS DADOS E SE HOUVE COLUNAS ESPECIFICADAS PELO USUÁRIO.
+
     Filtro = []
-    
+
+    # CASO O USUÁRIO NÃO ESPECIFIQUE UMA COLUNA ESPECÍFICA:    
     if coluna == None:
         
+        # PERCORRER OO DATAFRAME INSERIDO NO ARGUMENTO:
         for linha in dataframe:
+
+            # CASO NA LINHA 0 ACHE O VALOR REFERÊNCIA ENTREGUE NO ARGUMENTO:
             if linha[0] == pesquisa:
+
+                # ADICIONA COLUNA 0, 1, 2, 3, 4, 5, 6 DA LINHA PERCORRIDA À VARIÁVEL 'Filtro':
                 Filtro += [[linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], linha[6]]]
 
+
+    # OPÇÃO RESERVADA PARA O CALLBACK DO 2º GRÁFICO:
     elif coluna == 3:
 
+        # PERCORRER OO DATAFRAME INSERIDO NO ARGUMENTO:
         for linha in dataframe:
+
+            # CASO NA LINHA 0 ACHE O VALOR REFERÊNCIA ENTREGUE NO ARGUMENTO:
             if linha[0] == pesquisa:
+
+                # ADICIONA COLUNA 0, 1, 2 DA LINHA PERCORRIDA À VARIÁVEL 'Filtro':
                 Filtro += [[linha[0], linha[1], linha[2]]]
 
-
+    # CASO O USUÁRIO, TAMBÉM, ESPECIFIQUE A COLUNA A SER FILTRADA:
     else:
+
         referencia = 2
+
+        # PERCORRER OS ELEMENTOS DENTRO DA LISTA 'opcoes2' (LINHA 49)):
         for alternativa in opcoes2:
+
+            # CASO A COLUNA DE ESCOLHA DO USUÁRIO SEJA IGUAL AO ELEMENTO PERCORRIDO DA REPETIÇÃO ANTERIOR:
             if str(coluna) == str(alternativa):
+
+                # PERCORRER AS LINHAS DO DATAFRAME INSERIDO NO ARGUMENTO:
                 for linha in dataframe:
+
+                    # CASO NA LINHA 0 ACHE O VALOR REFERÊNCIA ENTREGUE NO ARGUMENTO:
                     if linha[0] == pesquisa:
+
+                        # ADICIONA COLUNA 0, 1 E A COLUNA DO VALOR DE 'referencia' NO MOMENTO, DA LINHA PERCORRIDA À VARIÁVEL 'Filtro':
                         Filtro += [[linha[0], linha[1], linha[referencia]]]
+
+            # CASO A COLUNA DO USUÁRIO NÃO BATA COM O ELEMENTO PERCORRIDO PELA REPTIÇÃO DA LINHA 706, REFERENCIA RECEBE +1:
             referencia += 1
         
 
     return Filtro
 
+# =====================================================================================================================
+# INICIAÇÃO AOS CALLBACKS:
+
+    # CALLBACK PARA O GRÁFICO 1 (EM BARRAS):
 
 @app.callback(
     Output('Grafico_dados', 'figure'),
@@ -681,7 +764,7 @@ def update_de_dash(tipo, continente):
 
     return fig1
 # ======================================================================================================================
-    # CALLBACL PARA O GRÁFICO 2:
+    # CALLBACK PARA O GRÁFICO 2 (EM BARRAS POR GRUPO):
 
 @app.callback(
     Output('Grafico_dados2', 'figure'),
@@ -712,7 +795,7 @@ def UpdateDeDash01(value):
     return fig2
 
 # ======================================================================================================================
-    # CALLBACK PARA O GRÁFICO 3:
+    # CALLBACK PARA O GRÁFICO 3 (LINHAS):
 
 
 @app.callback(
@@ -758,90 +841,96 @@ def UpdateDeDash1(value):
 # ======================================================================================================================
 # CALLBACK PARA OS MODAIS:
 
-
-# PARA O MODAL 1:
-@app.callback(
-    Output("modal1", "is_open"),
-    [Input("menu1", "n_clicks"), Input("close1", "n_clicks")],
-    [State("modal1", "is_open")],
-)
-def toggle_modal(n1, n2, is_open):
-    if n1 or n2:
-        return not is_open
-    return is_open
-
-
-# PARA O MODAL 2:
-@app.callback(
-    Output("modal2", "is_open"),
-    [Input("menu2", "n_clicks"), Input("close2", "n_clicks")],
-    [State("modal2", "is_open")],
-)
-def toggle_modal1(n1, n2, is_open):
-    if n1 or n2:
-        return not is_open
-    return is_open
-
-
-# PARA O MODAL 3:
-@app.callback(
-    Output("modal3", "is_open"),
-    [Input("menu3", "n_clicks"), Input("close3", "n_clicks")],
-    [State("modal3", "is_open")],
-)
-def toggle_modal2(n1, n2, is_open):
-    if n1 or n2:
-        return not is_open
-    return is_open
-
-
-# PARA O MODAL 4:
-@app.callback(
-    Output("modal4", "is_open"),
-    [Input("menu4", "n_clicks"), Input("close4", "n_clicks")],
-    [State("modal4", "is_open")],
-)
-def toggle_modal3(n1, n2, is_open):
-    if n1 or n2:
-        return not is_open
-    return is_open
-
+# PARA O 1º MODAL DO CAIXA DE SELEÇÃO DA BARRA LATERAL:
 @app.callback(
     Output("modalPrim1", "is_open"),
     [Input("Drop1", "n_clicks"), Input("closePrim1", "n_clicks")],
     [State("modalPrim1", "is_open")],
 )
-def toggle_modal3(n1, n2, is_open):
+
+def ModalLat1(n1, n2, is_open):
     if n1 or n2:
         return not is_open
     return is_open
 
+# PARA O 2º MODAL DO CAIXA DE SELEÇÃO DA BARRA LATERAL:
 @app.callback(
     Output("modalPrim2", "is_open"),
     [Input("Drop2", "n_clicks"), Input("closePrim2", "n_clicks")],
-    [State("modalPrim2", "is_open")],
+    [State("modalPrim2", "is_open")], 
 )
-def toggle_modal3(n1, n2, is_open):
+def ModalLat2(n1, n2, is_open):
     if n1 or n2:
         return not is_open
     return is_open
-    
+
+# PARA O 3º MODAL DO CAIXA DE SELEÇÃO DA BARRA LATERAL:
 @app.callback(
     Output("modalPrim3", "is_open"),
     [Input("Drop3", "n_clicks"), Input("closePrim3", "n_clicks")],
     [State("modalPrim3", "is_open")],
 )
-def toggle_modal3(n1, n2, is_open):
+def ModalLat3(n1, n2, is_open):
     if n1 or n2:
         return not is_open
     return is_open
 
+
+# PARA O MODAL 1 DE INFO:
+@app.callback(
+    Output("modal1", "is_open"),
+    [Input("menu1", "n_clicks"), Input("close1", "n_clicks")],
+    [State("modal1", "is_open")],
+)
+def Modal1(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+# PARA O MODAL 2 DE INFO:
+@app.callback(
+    Output("modal2", "is_open"),
+    [Input("menu2", "n_clicks"), Input("close2", "n_clicks")],
+    [State("modal2", "is_open")],
+)
+def Modal2(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+# PARA O MODAL 3 DE INFO:
+@app.callback(
+    Output("modal3", "is_open"),
+    [Input("menu3", "n_clicks"), Input("close3", "n_clicks")],
+    [State("modal3", "is_open")],
+)
+def Modal3(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+# PARA O MODAL 4 DE INFO:
+@app.callback(
+    Output("modal4", "is_open"),
+    [Input("menu4", "n_clicks"), Input("close4", "n_clicks")],
+    [State("modal4", "is_open")],
+)
+def Modal4(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+# PARA O MODAL DO BOTÃO DE DESENVOLVEDORES:
 @app.callback(
     Output("modalDev", "is_open"),
     [Input("menu5", "n_clicks"), Input("closeDev", "n_clicks")],
     [State("modalDev", "is_open")],
 )
-def toggle_modal3(n1, n2, is_open):
+def ModalDev(n1, n2, is_open):
     if n1 or n2:
         return not is_open
     return is_open
