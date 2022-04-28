@@ -1,0 +1,50 @@
+body{
+    background: url(CafeGif.gif) no-repeat;
+    background-size: cover;
+}
+
+.PrimeiraColuna{
+    margin-top: 4vh;
+}
+
+.SegundaColuna{
+    margin-top: 5vh;
+}
+
+.LogoId{
+    margin-top: 17vh;
+    margin-bottom: 1vh;
+}
+
+.Alinhamento{
+    text-align: center;
+}
+
+.Dropdown1{
+    text-align: center;
+    font-family: Century Gothic;
+    text-transform: uppercase;
+}
+
+.Dropdown2{
+    text-align: center;
+    font-family: Century Gothic;
+    text-transform: uppercase;
+}
+
+.Dropdown3{
+    text-align: center;
+    font-family: Century Gothic;
+    text-transform: uppercase;
+}
+
+.Dropdown4{
+    text-align: center;
+    font-family: Century Gothic;
+    text-transform: uppercase;
+}
+
+.link{
+    text-decoration: none;
+    margin-left: 1vw;
+}
