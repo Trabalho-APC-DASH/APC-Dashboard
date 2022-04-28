@@ -240,15 +240,15 @@ barralateral = html.Div(
                 html.P('INFO:', style={'color': 'white', 'margin-top': '2vh'}),
 
                 # DEMAIS OPÇÕES (QUE SERÃO OS INFO DE CADA GRÁFICO):
-                dbc.NavLink("Exportações", href="/page-1", id='menu1'),
-                dbc.NavLink("Compra", href="/page2", id='menu2'),
-                dbc.NavLink("Preços", href="/page-4", id='menu3'),
-                dbc.NavLink("Produções", href="/page-5", id='menu4'),
+                dbc.NavLink("Exportações", id='menu1', style={'cursor': 'pointer'}),
+                dbc.NavLink("Compra", id='menu2', style={'cursor': 'pointer'}),
+                dbc.NavLink("Preços", id='menu3', style={'cursor': 'pointer'}),
+                dbc.NavLink("Produções", id='menu4', style={'cursor': 'pointer'}),
 
                 # ÁREA PARA ACESSO AOS DESENVOLVEDORES:
                 html.P('DESENVOLVEDORES:', style={'color': 'white', 'margin-top': '3vh'}),
 
-                html.A('Acesse Aqui', href='Desenvolvedores.html', className='link', target='_Blank'),
+                dbc.NavLink('Acesse Aqui', id='menu5', style={'cursor': 'pointer'})
 
             ],
             vertical=True,
@@ -458,6 +458,43 @@ modal4 = html.Div(
     ]
 )
 
+modalDev = html.Div(
+    [
+        dbc.Modal(
+            [   # TÍTULO DO MODAL:
+                dbc.ModalHeader(dbc.ModalTitle("Desenvolvedores:")),
+
+                # CORPO DO MODAL:
+                dbc.ModalBody([
+
+                    html.Ul([
+
+                        html.Li('Daniel Rodrigues da Rocha - 211061583'),
+                        html.Li('Daniel Nunes Duarte - 211062910'),
+                        html.Li('Jesus Gabriel Carvalho Ventura - 211062956'),
+                        html.Li('Igor de Souza Justino - 211061897'),
+                        html.Li('Gabriel Fenelon Rocha Goncalves - 211061743'),
+                        html.Li('Queren Hapuque Pereira Torres - 190094711'),
+                        html.Li('Gustavo Lima Menezes - 211062938')
+
+                    ])
+
+                ]),
+
+                # RODAPÉ DO MODAL:
+                dbc.ModalFooter(
+                    dbc.Button(
+                        "Fechar", id="closeDev", className="ms-auto", n_clicks=0, color='dark', outline=True
+                    )
+                ),
+            ],
+            id="modalDev",
+            is_open=False,
+            size='xl'
+        ),
+    ]
+)
+
 
 #-----------------------------------------------------------------------------------------
 # DECLARAÇÃO EM PARTES DO SITE:
@@ -570,7 +607,7 @@ app.layout = html.Div(className='Tudo', id='Tudo', children=[
         ], className='finalClass', style={'margin-top': '4vh'})
 
     ])
-    ]), barralateral, modal1, modal2, modal3, modal4, modalPrim1, modalPrim2, modalPrim3])
+    ]), barralateral, modal1, modal2, modal3, modal4, modalPrim1, modalPrim2, modalPrim3, modalDev])
 
 
 # =====================================================================================================================
@@ -798,6 +835,17 @@ def toggle_modal3(n1, n2, is_open):
     if n1 or n2:
         return not is_open
     return is_open
+
+@app.callback(
+    Output("modalDev", "is_open"),
+    [Input("menu5", "n_clicks"), Input("closeDev", "n_clicks")],
+    [State("modalDev", "is_open")],
+)
+def toggle_modal3(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
 
 
 if __name__ == '__main__':
