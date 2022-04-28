@@ -284,7 +284,7 @@ modalPrim1 = html.Div(
                 # CORPO DO MODAL:
                 dbc.ModalBody([
 
-                    # O CORPO SERÁ UMA 'P'ARÁGRAFO E DOIS DROPDOWN'S DE FILTRO DO 1º GRÁFICO:
+                    # O CORPO SERÁ UM 'P'ARÁGRAFO E DOIS DROPDOWN'S DE FILTRO DO 1º GRÁFICO:
                     html.P('Selecione o continente a ser FIltrado:'),
 
                         # 1º DROPDOWN:
@@ -334,7 +334,7 @@ modalPrim2 = html.Div(
                 # CORPO DO MODAL:
                 dbc.ModalBody([
 
-                    # O CORPO SERÁ UMA 'P'ARÁGRAFO E O DROPDOWN DE FILTRO DO 2º GRÁFICO:
+                    # O CORPO SERÁ UM 'P'ARÁGRAFO E O DROPDOWN DE FILTRO DO 2º GRÁFICO:
                     html.P('Selecione a Localização da Receita Federal a Ser filtrada:'),
 
                     # DROPDOWN:
@@ -373,7 +373,7 @@ modalPrim3 = html.Div(
                 # CORPO DO MODAL:
                 dbc.ModalBody([
 
-                    # O CORPO SERÁ UMA 'P'ARÁGRAFO E O DROPDOWN DE FILTRO DO 3º GRÁFICO:
+                    # O CORPO SERÁ UM 'P'ARÁGRAFO E O DROPDOWN DE FILTRO DO 3º GRÁFICO:
                     html.P('Selecione o Tipo de Café a ser filtrado:'),
 
                     # DROPDOWN:
@@ -609,7 +609,7 @@ Conteudo_Linha1 = [
 # ORGANIZAÇÃO EM LINHAS DO SITE, NESTE CASO DA LINHA 2:
 Conteudo_Linha2 = [
 
-    # A LINHA 1 SERÁ COMPOSTA PELOS GRÁFICOS "grafico3" E "grafico4", QUE SÃO VARIÁVEIS DECLARADAS LOGO ACIMA:
+    # A LINHA 2 SERÁ COMPOSTA PELOS GRÁFICOS "grafico3" E "grafico4", QUE SÃO VARIÁVEIS DECLARADAS LOGO ACIMA:
     dbc.Col(html.Div(grafico3), width=5),
 
     dbc.Col(html.Div(grafico4), width=5),
