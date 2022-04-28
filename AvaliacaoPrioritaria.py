@@ -675,23 +675,23 @@ def filtragem(dataframe, pesquisa, coluna):
     # CASO O USUÁRIO NÃO ESPECIFIQUE UMA COLUNA ESPECÍFICA:    
     if coluna == None:
         
-        # PERCORRER OO DATAFRAME INSERIDO NO ARGUMENTO:
+        # PERCORRER O 'dataframe' INSERIDO NO ARGUMENTO:
         for linha in dataframe:
 
-            # CASO NA LINHA 0 ACHE O VALOR REFERÊNCIA ENTREGUE NO ARGUMENTO:
+            # CASO NA LINHA 0 ACHE O VALOR 'pesquisa' ENTREGUE NO ARGUMENTO:
             if linha[0] == pesquisa:
 
                 # ADICIONA COLUNA 0, 1, 2, 3, 4, 5, 6 DA LINHA PERCORRIDA À VARIÁVEL 'Filtro':
                 Filtro += [[linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], linha[6]]]
 
 
-    # OPÇÃO RESERVADA PARA O CALLBACK DO 2º GRÁFICO:
+    # CONDIÇÃO RESERVADA PARA O CALLBACK DO 2º GRÁFICO:
     elif coluna == 3:
 
-        # PERCORRER OO DATAFRAME INSERIDO NO ARGUMENTO:
+        # PERCORRER O 'dataframe' INSERIDO NO ARGUMENTO:
         for linha in dataframe:
 
-            # CASO NA LINHA 0 ACHE O VALOR REFERÊNCIA ENTREGUE NO ARGUMENTO:
+            # CASO NA LINHA 0 ACHE O VALOR 'pesquisa' ENTREGUE NO ARGUMENTO:
             if linha[0] == pesquisa:
 
                 # ADICIONA COLUNA 0, 1, 2 DA LINHA PERCORRIDA À VARIÁVEL 'Filtro':
@@ -708,13 +708,13 @@ def filtragem(dataframe, pesquisa, coluna):
             # CASO A COLUNA DE ESCOLHA DO USUÁRIO SEJA IGUAL AO ELEMENTO PERCORRIDO DA REPETIÇÃO ANTERIOR:
             if str(coluna) == str(alternativa):
 
-                # PERCORRER AS LINHAS DO DATAFRAME INSERIDO NO ARGUMENTO:
+                # PERCORRER AS LINHAS DO 'dataframe' INSERIDO NO ARGUMENTO:
                 for linha in dataframe:
 
-                    # CASO NA LINHA 0 ACHE O VALOR REFERÊNCIA ENTREGUE NO ARGUMENTO:
+                    # CASO NA LINHA 0 ACHE O VALOR 'pesquisa' ENTREGUE NO ARGUMENTO:
                     if linha[0] == pesquisa:
 
-                        # ADICIONA COLUNA 0, 1 E A COLUNA DO VALOR DE 'referencia' NO MOMENTO, DA LINHA PERCORRIDA À VARIÁVEL 'Filtro':
+                        # ADICIONA COLUNA 0, 1 E A COLUNA DO VALOR DE 'referencia' DO MOMENTO, DA LINHA PERCORRIDA À VARIÁVEL 'Filtro':
                         Filtro += [[linha[0], linha[1], linha[referencia]]]
 
             # CASO A COLUNA DO USUÁRIO NÃO BATA COM O ELEMENTO PERCORRIDO PELA REPTIÇÃO DA LINHA 706, REFERENCIA RECEBE +1:
