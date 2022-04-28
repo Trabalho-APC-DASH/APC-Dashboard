@@ -11,15 +11,6 @@ body{
     margin-top: 5vh;
 }
 
-.LogoId{
-    margin-top: 17vh;
-    margin-bottom: 1vh;
-}
-
-.Alinhamento{
-    text-align: center;
-}
-
 .Dropdown1{
     text-align: center;
     font-family: Century Gothic;
@@ -47,4 +38,13 @@ body{
 .link{
     text-decoration: none;
     margin-left: 1vw;
+}
+
+.finalClass{
+    text-align: center;
+}
+
+.textofinalClass{
+    font-family: Century Gothic;
+    color: white;
 }

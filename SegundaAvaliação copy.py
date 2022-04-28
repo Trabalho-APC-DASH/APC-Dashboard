@@ -250,14 +250,6 @@ barralateral = html.Div(
 
                 html.A('Acesse Aqui', href='Desenvolvedores.html', className='link', target='_Blank'),
 
-                html.Div([
-        
-                    # IMAGEM LOGO DA UNB:
-                    html.Img(src='./assets/logo.png', width=200, className='LogoId')
-
-                ], className='Alinhamento'),
-
-                html.Div('Desenvolvido por alunos da Universidade De Brasília - FGA', style={'color': 'black', 'text-align': 'center', 'font-family': 'Century Gothic', 'font-weight': 'bold'})
             ],
             vertical=True,
             pills=True,
@@ -568,7 +560,14 @@ app.layout = html.Div(className='Tudo', id='Tudo', children=[
             Conteudo_Linha2,
             justify="end",
             style={'margin-right': '2vw'}
-        )
+        ),
+
+        html.Div([
+
+            html.Img(src='./assets/logo.png', id='ImagemId', width=200, className='ImagemClass'),
+            html.P('Desenvolvido por Alunos da Universidade de Brasília - FGA', id='textofinal', className='textofinalClass')
+
+        ], className='finalClass', style={'margin-top': '4vh'})
 
     ])
     ]), barralateral, modal1, modal2, modal3, modal4, modalPrim1, modalPrim2, modalPrim3])
