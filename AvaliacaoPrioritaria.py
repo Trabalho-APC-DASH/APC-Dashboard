@@ -774,7 +774,7 @@ def update_de_dash(tipo, continente):
     Output('Grafico_dados2', 'figure'),
     Input('filtro4', 'value')
 )
-def Lagoinha(value):
+def UpdatedeDash(value):
     if value == 'Todos':
         fig2 = px.bar(dfOf1, x=0, y=1, color=2, barmode="group", title='Exportação/Importação por Receita Federal', labels={
              '0': 'Unidade Da Receita Federal',
@@ -853,7 +853,6 @@ def UpdateDeDash1(value):
     [Input("Drop1", "n_clicks"), Input("closePrim1", "n_clicks")],
     [State("modalPrim1", "is_open")],
 )
-
 def ModalLat1(n1, n2, is_open):
     if n1 or n2:
         return not is_open
