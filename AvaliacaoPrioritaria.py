@@ -78,6 +78,7 @@ fig2 = px.bar(dfOf1, x=0, y=1, color=2, barmode="group", title='Exportação/Imp
 fig2.update_layout(
         paper_bgcolor='rgba(0, 0, 0, 0.2)',
         font_color='white',
+        legend_bgcolor='rgba(0, 0, 0, 0)'
     )
 
 # REPETIÇÃO PARA CRIAR UMA LISTA PARA SER UTILIZADA NO DROPDOWN DO GRÁFICO 2:
@@ -187,6 +188,7 @@ fig4.update_geos(
 fig4.update_layout(
         paper_bgcolor='rgba(0, 0, 0, 0.2)',
         font_color='white',
+        legend_bgcolor='rgba(0, 0, 0, 0)'
     )
 # =======================================================================================
 # INÍCIO PARA EXECUÇÃO DO LAYOUT E INSERÇÃO DOS GRÁFICOS:
@@ -234,7 +236,7 @@ barralateral = html.Div(
             [
                 # INSERÇÃO DO DROOPDOWN:
                 dbc.DropdownMenu(
-                label="FIltros", children=items, direction="down"
+                label="FIltros", children=items, direction="right", color='rgba(255, 101, 0)', style={'border-color': '#a5a5a500'}
                 ),
 
 
@@ -270,7 +272,7 @@ barralateral = html.Div(
 # -=-=-=-=-=-=-=-=-=-=-
 # O QUE SÃO OS MODAIS?
 
-# OS MODAIS SÃO AS JANELINHAS QUE ABREM QUNADO CLICAMOS NOS BOTÕES.
+# OS MODAIS SÃO AS JANELINHAS QUE ABREM QUANDO CLICAMOS NOS BOTÕES.
 # -=-=-=-=-=-=-=-=-=-=-
 
 
@@ -279,31 +281,33 @@ modalPrim1 = html.Div(
     [
         dbc.Modal(
             [   # TÍTULO DO MODAL:
-                dbc.ModalHeader(dbc.ModalTitle("Filtro: Primeiro Gráfico (Barras)")),
+                dbc.ModalHeader(dbc.ModalTitle("Filtro: Primeiro Gráfico (Barras)", style={'color': 'white'})),
 
                 # CORPO DO MODAL:
                 dbc.ModalBody([
 
                     # O CORPO SERÁ UM 'P'ARÁGRAFO E DOIS DROPDOWN'S DE FILTRO DO 1º GRÁFICO:
-                    html.P('Selecione o continente a ser FIltrado:'),
+                    html.P('Selecione o continente a ser Filtrado:', style={'color': 'white'}),
 
                         # 1º DROPDOWN:
                         dcc.Dropdown(opcoes, value='Todos os Continentes', id='Filtro_Continentes', className='Dropdown1', style={
-                            'background-color': 'chocolate',
+                            'background-color': '#c9c9c9',
                             'border-radius': '14px',
-                            'border-color': 'transparent',                       
+                            'border-color': 'transparent',
+                            'cursor': 'pointer'                   
                         }),
     
                     # MAIS UM 'P'ARÁGRAFO:
-                    html.P('Selecione o Tipo de Café a ser FIltrado:', style={'margin-top': '2vh'}),
+                    html.P('Selecione o Tipo de Café a ser Filtrado:', style={'margin-top': '2vh', 'color': 'white'}),
 
                         # 2º DROPDOWN:
                         dcc.Dropdown(opcoes2, value='TOTAL', id='Filtro_Tipo', className='Dropdown2', style={
-                            'background-color': 'chocolate',
+                            'background-color': '#c9c9c9',
                             'border-radius': '14px',
                             'border-color': 'transparent',
                             'margin-bottom': '1vh',
-                            'margin-top': '1vh'                       
+                            'margin-top': '1vh',   
+                            'cursor': 'pointer'                    
                         }),
                 ]),
 
@@ -312,7 +316,7 @@ modalPrim1 = html.Div(
 
                     # TEREMOS UM BOTÃO EM SEU RODAPÉ:
                     dbc.Button(
-                        "Fechar", id="closePrim1", className="ms-auto", n_clicks=0, color='dark', outline=True
+                        "Fechar", id="closePrim1", className="ms-auto", n_clicks=0, color='dark', outline=True,
                     )
                 ),
             ],
@@ -329,21 +333,21 @@ modalPrim2 = html.Div(
         dbc.Modal(
             [
                 # TITULO DO MODAL:
-                dbc.ModalHeader(dbc.ModalTitle("Filtro: Segundo Gráfico (Barras em Grupos)")),
+                dbc.ModalHeader(dbc.ModalTitle("Filtro: Segundo Gráfico (Barras em Grupos)", style={'color': 'white'})),
 
                 # CORPO DO MODAL:
                 dbc.ModalBody([
 
                     # O CORPO SERÁ UM 'P'ARÁGRAFO E O DROPDOWN DE FILTRO DO 2º GRÁFICO:
-                    html.P('Selecione a Localização da Receita Federal a Ser filtrada:'),
+                    html.P('Selecione a Localização da Receita Federal a Ser filtrada:', style={'color': 'white'}),
 
                     # DROPDOWN:
                     dcc.Dropdown(receita_filtragem, value='Todos', id='filtro4', className='Dropdown4', style={
-                        'background-color': 'chocolate',
+                        'background-color': '#c9c9c9',
                         'border-radius': '14px',
                         'border-color': 'transparent',
-                        'margin-bottom': '1vh'}),
-
+                        'margin-bottom': '1vh',
+                        'cursor': 'pointer'}),
                 ]),
 
                 # RODAPÉ DO MODAL:
@@ -368,20 +372,21 @@ modalPrim3 = html.Div(
         dbc.Modal(
             [
                 # TITULO DO MODAL:
-                dbc.ModalHeader(dbc.ModalTitle("Filtro: Terceiro Gráfico (Linhas)")),
+                dbc.ModalHeader(dbc.ModalTitle("Filtro: Terceiro Gráfico (Linhas)", style={'color': 'white'})),
 
                 # CORPO DO MODAL:
                 dbc.ModalBody([
 
                     # O CORPO SERÁ UM 'P'ARÁGRAFO E O DROPDOWN DE FILTRO DO 3º GRÁFICO:
-                    html.P('Selecione o Tipo de Café a ser filtrado:'),
+                    html.P('Selecione o Tipo de Café a ser filtrado:', style={'color': 'white'}),
 
                     # DROPDOWN:
                     dcc.Dropdown(opcoes3, value='Todos os Tipos de Café', id='filtro3', className='Dropdown3', style={
-                        'background-color': 'chocolate',
+                        'background-color': '#c9c9c9',
                         'border-radius': '14px',
                         'border-color': 'transparent',
-                        'margin-bottom': '1vh'}),
+                        'margin-bottom': '1vh',
+                        'cursor': 'pointer'}),
 
                 ]),
 
@@ -407,10 +412,10 @@ modal1 = html.Div(
         dbc.Modal(
             [
                 # TÍTULO DO MODAL:
-                dbc.ModalHeader(dbc.ModalTitle("Compra de Café Brasileiro")),
+                dbc.ModalHeader(dbc.ModalTitle("Compra de Café Brasileiro", style={'color': 'white'})),
 
                 # CORPO DO MODAL:
-                dbc.ModalBody("Gráfico em barras, representa a quantidade exportada de café brasileiro entre os principais países compradores do produto"),
+                dbc.ModalBody("Gráfico em barras, representa a quantidade exportada de café brasileiro entre os principais países compradores do produto", style={'color': 'white'}),
                 
                 # RODAPÉ DO MODAL:
                 dbc.ModalFooter(
@@ -421,7 +426,7 @@ modal1 = html.Div(
             ],
             id="modal1",
             is_open=False,
-            size='lg'
+            size='lg',
         ),
     ]
 )
@@ -431,10 +436,10 @@ modal2 = html.Div(
     [
         dbc.Modal(
             [   # TÍTULO DO MODAL:
-                dbc.ModalHeader(dbc.ModalTitle("Importação e Exportação por Receita Federal")),
+                dbc.ModalHeader(dbc.ModalTitle("Importação e Exportação por Receita Federal", style={'color': 'white'})),
 
                 # CORPO DO MODAL:
-                dbc.ModalBody("Dividido entre as receitas federais, este gráfico de barras, divididos em grupos, relata a Exportação e Importação de café."),
+                dbc.ModalBody("Dividido entre as receitas federais, este gráfico de barras, divididos em grupos, relata a Exportação e Importação de café.", style={'color': 'white'}),
 
                 # RODAPÉ DO MODAL:
                 dbc.ModalFooter(
@@ -457,10 +462,10 @@ modal3 = html.Div(
     [
         dbc.Modal(
             [   # TÍTULO DO MODAL:
-                dbc.ModalHeader(dbc.ModalTitle("Preço Médio do Café Brasileiro")),
+                dbc.ModalHeader(dbc.ModalTitle("Preço Médio do Café Brasileiro", style={'color': 'white'})),
 
                 # CORPO DO MODAL:
-                dbc.ModalBody("Preço médio calculado mensalmente do café brasileiro, estão representadas neste gráfico de Linhas. (Valores em Dólar US$)."),
+                dbc.ModalBody("Preço médio calculado mensalmente do café brasileiro, estão representadas neste gráfico de Linhas. (Valores em Dólar US$).", style={'color': 'white'}),
 
                 # RODAPÉ DO MODAL:
                 dbc.ModalFooter(
@@ -483,10 +488,10 @@ modal4 = html.Div(
     [
         dbc.Modal(
             [   # TÍTULO DO MODAL:
-                dbc.ModalHeader(dbc.ModalTitle("Produção de Café entre Principais Países")),
+                dbc.ModalHeader(dbc.ModalTitle("Produção de Café entre Principais Países", style={'color': 'white'})),
 
                 # CORPO DO MODAL:
-                dbc.ModalBody("Os dados de produção do mapa esta localizada em cada ponto de seu local, para navegar entre eles, gire o planeta pressionando e arrastando o mouse."),
+                dbc.ModalBody("Os dados de produção do mapa esta localizada em cada ponto de seu local, para navegar entre eles, gire o planeta pressionando e arrastando o mouse.", style={'color': 'white'}),
 
                 # RODAPÉ DO MODAL:
                 dbc.ModalFooter(
@@ -509,7 +514,7 @@ modalDev = html.Div(
     [
         dbc.Modal(
             [   # TÍTULO DO MODAL:
-                dbc.ModalHeader(dbc.ModalTitle("Desenvolvedores:")),
+                dbc.ModalHeader(dbc.ModalTitle("Desenvolvedores:", style={'color': 'white'})),
 
                 # CORPO DO MODAL:
                 dbc.ModalBody([
@@ -517,13 +522,12 @@ modalDev = html.Div(
                     # LISTA DOS INTEGRANTES:
                     html.Ul([
 
-                        html.Li('Daniel Rodrigues da Rocha - 211061583'),
-                        html.Li('Daniel Nunes Duarte - 211062910'),
-                        html.Li('Jesus Gabriel Carvalho Ventura - 211062956'),
-                        html.Li('Igor de Souza Justino - 211061897'),
-                        html.Li('Gabriel Fenelon Rocha Goncalves - 211061743'),
-                        html.Li('Queren Hapuque Pereira Torres - 190094711'),
-                        html.Li('Gustavo Lima Menezes - 211062938')
+                        html.Li('Daniel Rodrigues da Rocha - 211061583', style={'color': 'white'}),
+                        html.Li('Daniel Nunes Duarte - 211062910', style={'color': 'white'}),
+                        html.Li('Jesus Gabriel Carvalho Ventura - 211062956', style={'color': 'white'}),
+                        html.Li('Igor de Souza Justino - 211061897', style={'color': 'white'}),
+                        html.Li('Gabriel Fenelon Rocha Goncalves - 211061743', style={'color': 'white'}),
+                        html.Li('Queren Hapuque Pereira Torres - 190094711', style={'color': 'white'}),
 
                     ])
 
@@ -628,7 +632,7 @@ app.layout = html.Div(className='Tudo', id='Tudo', children=[
     html.Div(className='Base', children= [
 
     # DIV PARA A PRIMEIRA LINHA:
-    html.Div(className='PrimeiraColuna' , children=[
+    html.Div(className='PrimeiraLinha' , children=[
       
         # A PRIMEIRA LINHA TERÁ O CONTEÚDO DA VARIÁVEL 'Conteudo_Linha1':
         dbc.Row(
@@ -640,7 +644,7 @@ app.layout = html.Div(className='Tudo', id='Tudo', children=[
     ]),
 
     # DIV PARA A SEGUNDA LINHA:
-    html.Div(className='SegundaColuna', children=[
+    html.Div(className='SegundaLinha', children=[
 
         # A SEGUNDA LINHA TERÁ O CONTEÚDO DA VARIÁVEL 'Conteudo_Linha2':
         dbc.Row(
@@ -759,7 +763,7 @@ def update_de_dash(tipo, continente):
     fig1.update_layout(
         paper_bgcolor='rgba(0, 0, 0, 0.2)',
         font_color='white',
-        
+        legend_bgcolor='rgba(0, 0, 0, 0)'
     )
 
     return fig1
@@ -770,7 +774,7 @@ def update_de_dash(tipo, continente):
     Output('Grafico_dados2', 'figure'),
     Input('filtro4', 'value')
 )
-def UpdateDeDash01(value):
+def Lagoinha(value):
     if value == 'Todos':
         fig2 = px.bar(dfOf1, x=0, y=1, color=2, barmode="group", title='Exportação/Importação por Receita Federal', labels={
              '0': 'Unidade Da Receita Federal',
@@ -790,6 +794,7 @@ def UpdateDeDash01(value):
     fig2.update_layout(
         paper_bgcolor='rgba(0, 0, 0, 0.2)',
         font_color='white',
+        legend_bgcolor='rgba(0, 0, 0, 0)'
     )
 
     return fig2
@@ -834,6 +839,7 @@ def UpdateDeDash1(value):
     fig3.update_layout(
         paper_bgcolor='rgba(0, 0, 0, 0.2)',
         font_color='white',
+        legend_bgcolor='rgba(0, 0, 0, 0)'
     )
 
     return fig3

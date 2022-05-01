@@ -3,11 +3,11 @@ body{
     background-size: cover;
 }
 
-.PrimeiraColuna{
+.PrimeiraLinha{
     margin-top: 4vh;
 }
 
-.SegundaColuna{
+.SegundaLinha{
     margin-top: 5vh;
 }
 
@@ -47,4 +47,37 @@ body{
 .textofinalClass{
     font-family: Century Gothic;
     color: white;
+}
+
+.nav-link{
+    color: #ff6500;
+}
+
+.nav-link:focus, .nav-link:hover {
+    color: #632902;
+}
+
+.btn-primary {
+    color: #fff;
+    border-color: #ff6500;
+}
+
+.dropdown-menu {
+    background-color: #c9c9c9;
+}
+
+.modal-content {
+    background-color: #ff6500de;
+}
+
+.modal-header{
+    border-bottom: 1px solid #00000082;
+}
+
+.modal-footer{
+    border-top: 1px solid #00000082;
+}
+
+.Select.-menu-outer{
+    background-color: #c9c9c9;
 }
