@@ -524,6 +524,8 @@ modalDev = html.Div(
 
                         html.Li('Daniel Rodrigues da Rocha - 211061583', style={'color': 'white'}),
                         html.Li('Daniel Nunes Duarte - 211062910', style={'color': 'white'}),
+                        html.Li('Dannyeclisson Rodrigo Martins da Costa - 211061592', style={'color': 'white'}),
+                        html.Li('Júlia Menezes Batista - 211039564', style={'color': 'white'}),
                         html.Li('Jesus Gabriel Carvalho Ventura - 211062956', style={'color': 'white'}),
                         html.Li('Igor de Souza Justino - 211061897', style={'color': 'white'}),
                         html.Li('Gabriel Fenelon Rocha Goncalves - 211061743', style={'color': 'white'}),
