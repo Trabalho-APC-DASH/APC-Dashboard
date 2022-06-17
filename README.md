@@ -3,6 +3,12 @@
 <h4>DashBoard e gráficos desenvolvido em equipe durante o curso de Algoritmos e Programação de Computadores (APC) na UnB 2.2021</h4>
 <br>
 
+<div align = "center">
+  
+  <img height = "100" src = "https://github.com/DanielRogs/Painel-APC/raw/main/assets/UnbLogo.png">
+  
+</div><br>
+
 <h3> Habilidades Desenvolvidas pela Equipe: </h3>
 
 * Uso extensivo da linguagem python;
